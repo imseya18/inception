@@ -12,4 +12,6 @@ services:
       - "443:443"
     volumes:
       - ./nginx/conf/:/etc/nginx/conf.d/
+      - ./nginx/tools/key:/etc/nginx/ssl/
+     # - ./nginx/tools/html/:/var/www/html
     restart: always
