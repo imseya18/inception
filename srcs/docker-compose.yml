@@ -18,8 +18,8 @@ services:
 
   mariadb:
     build:
-      context: .
-      dockerfile: mariadb/Dockerfile
+      context: mariadb
+      dockerfile: Dockerfile
       args:
         DB_NAME: ${DB_NAME}
         DB_USER: ${DB_USER}
