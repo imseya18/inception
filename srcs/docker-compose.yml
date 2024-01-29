@@ -13,5 +13,28 @@ services:
     volumes:
       - ./nginx/conf/:/etc/nginx/conf.d/
       - ./nginx/tools/key:/etc/nginx/ssl/
-     # - ./nginx/tools/html/:/var/www/html
+#      - ./nginx/tools/html/:/var/www/html
     restart: always
+
+  mariadb:
+    build:
+      context: .
+      dockerfile: mariadb/Dockerfile
+      args:
+        DB_NAME: ${DB_NAME}
+        DB_USER: ${DB_USER}
+        DB_PASS: ${DB_PASS}
+        DB_ROOT: ${DB_ROOT}
+    container_name: mariadb
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-volume:/var/lib/mysql
+    restart: always
+
+volumes:
+   db-volume:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/${USER}/data/mariadb
