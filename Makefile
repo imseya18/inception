@@ -2,23 +2,26 @@ name = simple_nginx_html
 
 all:
 	@printf "Running Configuration ${name}...\n"
-	@docker-compose -f ./docker-compose.yml up -d
+	@bash	./srcs/wordpress/tools/make_dir.sh
+	@docker-compose -f ./srcs/docker-compose.yml up -d
 
 build:
 	@printf "Building the configuration ${name}...\n"
-	@docker-compose -f ./docker-compose.yml up -d --build
+	@docker-compose -f ./srcs/docker-compose.yml up -d --build
 
 down:
 	@printf "Stopping the configuration ${name}...\n"
-	@docker-compose -f ./docker-compose.yml down
+	@docker-compose -f ./srcs/docker-compose.yml down
 
 re:
 	@printf "Rebuilding the configuration ${name}...\n"
-	@docker-compose -f ./docker-compose.yml up -d --build
+	@bash   ./srcs/wordpress/tools/make_dir.sh
+	@docker-compose -f ./srcs/docker-compose.yml up -d --build
 
 clean: down
 	@printf "Clearing configuration ${name}...\n"
 	@docker system prune -a
+	@sudo rm -rf ~/data
 
 fclean:
 	@printf "Total clean of all configurations docker\n"

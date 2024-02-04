@@ -20,4 +20,8 @@ define( 'WP_REDIS_READ_TIMEOUT', 1 );
 define( 'WP_REDIS_DATABASE', 0 );
 require_once ABSPATH . 'wp-settings.php';
 EOF
+
+
+#wp core install --url="mmorue.42.fr" --title="inception" --admin_user="${WP_USER}" --admin_password="${WP_PASS}" --admin_email="${WP_USER}@student.42mulhouse.fr"
+
 fi
