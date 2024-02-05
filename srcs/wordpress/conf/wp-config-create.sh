@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/sh
 if [ ! -f "/var/www/html/wp-config.php" ]; then
 cat << EOF > /var/www/html/wp-config.php
 <?php
@@ -21,7 +21,10 @@ define( 'WP_REDIS_DATABASE', 0 );
 require_once ABSPATH . 'wp-settings.php';
 EOF
 
+	wp core install --url="https://mmorue.42.fr" --title="inception" --admin_user="${WP_USER}" --admin_password="${WP_PASS}" --admin_email="${WP_USER}@example.com" --path='/var/www/html'
 
-#wp core install --url="mmorue.42.fr" --title="inception" --admin_user="${WP_USER}" --admin_password="${WP_PASS}" --admin_email="${WP_USER}@student.42mulhouse.fr"
+	wp user create ${WP_CUSER} ${WP_USER}@student.42muhlouse.fr --role=administrator --user_pass="${WP_CPASS}" --path='/var/www/html'
 
 fi
+
+/usr/sbin/php-fpm8 -F

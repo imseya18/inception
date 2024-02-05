@@ -42,11 +42,10 @@ RUN wget https://wordpress.org/latest.zip && \
     cp -rf wordpress/* . && \
     rm -rf wordpress latest.zip
 
-COPY ./conf/wp-config-create.sh .
 
-RUN sh wp-config-create.sh && rm wp-config-create.sh && \
-    chmod -R 0777 wp-content/
-
-EXPOSE 9000
+COPY ./conf/wp-config-create.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/wp-config-create.sh
+ENTRYPOINT ["/usr/local/bin/wp-config-create.sh"]
+#EXPOSE 9000
 
 CMD ["/usr/sbin/php-fpm8", "-F"]

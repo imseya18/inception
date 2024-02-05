@@ -12,6 +12,8 @@ services:
       - "443:443"
     networks:
       - inception
+    env_file:
+      - .env
     volumes:
       - ./nginx/conf/:/etc/nginx/conf.d/
       - ./nginx/tools/key:/etc/nginx/ssl/
@@ -32,6 +34,8 @@ services:
       - "3306:3306"
     networks:
       - inception
+    env_file:
+      - .env
     volumes:
       - db-volume:/var/lib/mysql
     restart: always
@@ -46,12 +50,16 @@ services:
         DB_PASS: ${DB_PASS}
         WP_USER: ${WP_USER}
         WP_PASS: ${WP_PASS}
+        WP_CUSER: ${WP_CUSER}
+        WP_CPASS: ${WP_CPASS}
     container_name: wordpress
     depends_on:
       - mariadb
     restart: always
     networks:
       - inception
+    env_file:
+      - .env
     volumes:
       - wp-volume:/var/www/html
 
