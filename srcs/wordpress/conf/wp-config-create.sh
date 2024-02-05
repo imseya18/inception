@@ -21,9 +21,9 @@ define( 'WP_REDIS_DATABASE', 0 );
 require_once ABSPATH . 'wp-settings.php';
 EOF
 
-	wp core install --url="https://mmorue.42.fr" --title="inception" --admin_user="${WP_USER}" --admin_password="${WP_PASS}" --admin_email="${WP_USER}@example.com" --path='/var/www/html'
+	wp core install --url="https://mmorue.42.fr" --title="inception" --admin_user="${WP_USER}" --admin_password="${WP_PASS}" --admin_email="${WP_USER}@student.42muhlouse.fr" --path='/var/www/html'
 
-	wp user create ${WP_CUSER} ${WP_USER}@student.42muhlouse.fr --role=administrator --user_pass="${WP_CPASS}" --path='/var/www/html'
+	wp user create ${WP_CUSER} ${WP_CUSER}@student.42muhlouse.fr --user_pass="${WP_CPASS}" --path='/var/www/html'
 
 fi
 

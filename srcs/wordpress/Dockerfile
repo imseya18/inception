@@ -46,6 +46,6 @@ RUN wget https://wordpress.org/latest.zip && \
 COPY ./conf/wp-config-create.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/wp-config-create.sh
 ENTRYPOINT ["/usr/local/bin/wp-config-create.sh"]
-#EXPOSE 9000
+EXPOSE 9000
 
 CMD ["/usr/sbin/php-fpm8", "-F"]
